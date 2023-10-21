@@ -14,4 +14,3 @@ function handleSubmit() {
         the_form.action = 'posted.php'
     }
 }
-
