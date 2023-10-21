@@ -1,0 +1,63 @@
+* {
+    font-family: 'Raleway', sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(214, 171, 171, 0.959);
+}
+
+h1 {
+    margin: 0;
+    color: #505d84;
+    text-shadow: 2px 2px #c77d7d;
+    font-size: 45px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5%;
+    padding-bottom: 3%;
+}
+
+.container {
+    padding: 2%;
+    border: 2px solid rgb(156, 109, 109);
+    border-radius: 10px;
+    width: 320px;
+    box-shadow: 10px 10px 11px -11px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 11px -11px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 11px -11px rgba(0,0,0,0.75);
+}
+
+input {
+    padding: 3%;
+    width: 300px;
+    margin: 3%;
+    border: none;
+    border-radius: 5px;
+    background-color: beige;
+}
+
+button{
+	background: none;
+	color: #2f3b5f;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    margin-top: 4%;
+    font-size: larger;
+    transition: 0.3s;
+}
+
+button:hover{
+    font-size: 25px;
+}
