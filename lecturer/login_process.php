@@ -17,7 +17,7 @@
                     $password = $row["password"];
                 }
 
-                header("Location: lecturer_dashboard.php");
+                header("Location: lecturer_dashboard.php/".$username);
                 exit();
             }
 
