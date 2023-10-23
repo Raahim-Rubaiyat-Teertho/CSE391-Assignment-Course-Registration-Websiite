@@ -13,12 +13,19 @@
     <div class="container">
         <h1>Login</h1>
         <div class="login-form">
-            <form action="lecturer_dashboard" method="post">
+            <form action='login_process.php' method ="post">
                 <input type="email" name="email" id="lec_email" placeholder="Username">
                 <input type="password" name="password" id="pass" placeholder="Password">
                 <button type="submit">Login</button>
             </form>
         </div>
     </div>
+
+    <?php
+        if (isset($_GET['error']) && $_GET['error'] == 1) {
+            echo "<script>alert('Invalid email or password');</script>";
+            
+        }
+    ?>
 </body>
 </html>
