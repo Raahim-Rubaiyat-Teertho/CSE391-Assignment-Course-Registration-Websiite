@@ -6,6 +6,9 @@
     <title>Lecturer || Dashboard</title>
 </head>
 <body>
-    Dashboard
+    <?php 
+        session_start();
+        echo "<h1 class='title'>"."Dashboard of " . $_SESSION['username']."</h1>";
+    ?> 
 </body>
 </html>
