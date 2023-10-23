@@ -18,6 +18,7 @@
                 }
 
                 header("Location: lecturer_dashboard.php");
+                exit();
             }
 
             if(mysqli_num_rows($result) == 0) {
