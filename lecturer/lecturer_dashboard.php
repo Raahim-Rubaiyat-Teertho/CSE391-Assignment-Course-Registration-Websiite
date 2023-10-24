@@ -30,10 +30,10 @@
                     <option value='Thursday'>Thursday 11:00-13:00</option>
                     <option value='Tuesday'>Tuesday 14:00-16:00</option>
                 </select>
+                <div class='go'>
+                    <button>Check</button>
+                </div>
             </form>
-            <div class='go'>
-                <button>Check</button>
-            </div>
         </div>
 
         <button class='logout'>Logout</button>";
