@@ -14,7 +14,7 @@
         <h1>Login</h1>
         <div class="login-form">
             <form action='login_process.php' method ="post">
-                <input type="email" name="email" id="lec_email" placeholder="Username">
+                <input type="email" name="email" id="lec_email" placeholder="Email">
                 <input type="password" name="password" id="pass" placeholder="Password">
                 <button type="submit">Login</button>
             </form>
