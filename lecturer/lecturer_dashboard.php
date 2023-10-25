@@ -16,33 +16,66 @@
 
     <?php 
         session_start();
+        if(isset($_GET['logout'])) {
+            session_destroy();
+            header('Location: ../lecturer_login.php');
+            exit();
+        }
     ?>
 
     <?php if(isset($_SESSION['username'])) : ?>
         <h1 class='title'>Dashboard of <?php echo $_SESSION['username'] ?></h1>
         <div class='container'>
             <h2 class='container-title'>Check Enrolled Students</h2>
-            <form action=''>
-                <select name='query-section' id='query'>
-                    <option value='Select'>Select Slot</option>
+            <form action='' method="post">
+                <select name='querysection' id='query'>
+                    <option value=''>Select Slot</option>
                     <option value='Friday'>Friday 10:00-12:00</option>
                     <option value='Monday'>Monday 15:00-17:00</option>
                     <option value='Thursday'>Thursday 11:00-13:00</option>
                     <option value='Tuesday'>Tuesday 14:00-16:00</option>
                 </select>
                 <div class='go'>
-                    <button>Check</button>
+                    <button type="submit">Check</button>
                 </div>
             </form>
         </div>
 
-        <button class='logout'>Logout</button>";
-
     <?php else : ?>
-        <h1>Please Login To Continue</h1>
+        <h1 class="title">Please Login To Continue</h1>
 
     <?php endif; ?>
+    
+    <?php 
+        include("../dbconnect.php");
+        $conn = OpenCon();
 
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $slot_name = $_POST['querysection'];
+        }
 
+        if(isset($slot_name)) {
+            $sql = "SELECT std_id, fname, name, email FROM student INNER JOIN slot WHERE student.slot_day = slot.slot_day AND slot.slot_day = '$slot_name'";
+            $result = mysqli_query($conn, $sql);
+
+            if(mysqli_num_rows($result) > 0) {
+                echo "<table class = 'res_table'>";
+                echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th></tr>";
+                while($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>";
+                    echo "<td>" . $row["std_id"] ."</td>";
+                    echo "<td>" . $row["fname"] ."</td>";
+                    echo "<td>" . $row["name"] ."</td>";
+                    echo "<td>" . $row["email"] ."</td>";
+                    echo "</tr>";
+                }
+        
+                echo "</table>";
+            } 
+        }
+    ?>
+
+    
+    <button class='logout'><a href="?logout=1">Logout</a></button>
 </body>
 </html>
