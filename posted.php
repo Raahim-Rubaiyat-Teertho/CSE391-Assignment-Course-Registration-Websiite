@@ -22,21 +22,38 @@
             $email = $_POST['em'];
             $slot = $_POST['slots'];
             if(!empty($name) && !empty($fname) && !empty($sid) && !empty($email) && !empty($slot)) {
-                $sql = "INSERT INTO student (std_id, name, fname, email, slot_day) VALUES ('$sid', '$name', '$fname', '$email', '$slot')";
+                $sql_initial = "SELECT * FROM student WHERE std_id = '$sid'";
+                $res_sql_initial = mysqli_query($conn, $sql_initial);
 
-                if(mysqli_query($conn, $sql)) {
-                    echo "<h2 class='completed'>Your registration has been completed successfully</h1>";
-                }
-
-                else {
-                    echo "<h2 class='completed'>There has been an error. Please try again.</h1>";
-                }
+                if(mysqli_num_rows($res_sql_initial) > 0) {
+                    if($res_sql_initial) {
+                        while($row = mysqli_fetch_assoc($res_sql_initial)) {
+                            $sid = $row["std_id"];
+                            session_start();
+                            $_SESSION["sid"] = $sid;
+                        }
+                    }
+                    header("Location: change_section.php/".$sid);
+                    exit();
+                } 
                 
-                $prev_date_sql = mysqli_query($conn, "SELECT seats_remaining FROM slot WHERE slot_day = '$slot'");
-                if(mysqli_num_rows($prev_date_sql) > 0) {
-                    foreach($prev_date_sql as $row) {
-                        $new_date = $row["seats_remaining"] -1;
-                        mysqli_query($conn, "UPDATE slot SET seats_remaining = '$new_date' WHERE slot.slot_day = '$slot'");
+                else {
+                    $sql = "INSERT INTO student (std_id, name, fname, email, slot_day) VALUES ('$sid', '$name', '$fname', '$email', '$slot')";
+
+                    if(mysqli_query($conn, $sql)) {
+                        echo "<h2 class='completed'>Your registration has been completed successfully</h1>";
+                    }
+
+                    else {
+                        echo "<h2 class='completed'>There has been an error. Please try again.</h1>";
+                    }
+                    
+                    $prev_date_sql = mysqli_query($conn, "SELECT seats_remaining FROM slot WHERE slot_day = '$slot'");
+                    if(mysqli_num_rows($prev_date_sql) > 0) {
+                        foreach($prev_date_sql as $row) {
+                            $new_date = $row["seats_remaining"] -1;
+                            mysqli_query($conn, "UPDATE slot SET seats_remaining = '$new_date' WHERE slot.slot_day = '$slot'");
+                        }
                     }
                 }
 
