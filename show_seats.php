@@ -7,7 +7,7 @@ function show_seats($conn, $day) {
 
     
     foreach($remain as $row) {
-        echo $row['seats_remaining'];
+        return $row['seats_remaining'];
     }
 
     // CloseCon($conn);

@@ -39,11 +39,11 @@
                     include("dbconnect.php");
                     $conn = OpenCon();
                     include ("show_seats.php");
-                    show_seats($conn, 'Monday');
+                    echo show_seats($conn, 'Monday');
                 ?> seats remaining)</option>
-                <option value="Tuesday">Tuesday 14:00-16:00 (<?php show_seats($conn, 'Tuesday'); ?> seats remaining)</option>
-                <option value="Thursday">Thursday 11:00-13:00 (<?php show_seats($conn, 'Thursday'); ?> seats remaining)</option>
-                <option value="Friday">Friday 10:00-12:00 (<?php show_seats($conn, 'Friday'); ?> seats remaining)</option>
+                <option value="Tuesday">Tuesday 14:00-16:00 (<?php echo show_seats($conn, 'Tuesday'); ?> seats remaining)</option>
+                <option value="Thursday">Thursday 11:00-13:00 (<?php echo show_seats($conn, 'Thursday'); ?> seats remaining)</option>
+                <option value="Friday">Friday 10:00-12:00 (<?php echo show_seats($conn, 'Friday'); ?> seats remaining)</option>
             </select>
             
             <div class="form-buttons">
